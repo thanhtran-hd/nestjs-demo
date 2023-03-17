@@ -19,9 +19,6 @@ export class UsersService {
   }
 
   async findOneWithPass(email: string): Promise<User> {
-    console.log('===========');
-    console.log(email);
-
     return await this.usersRepo.findOne({
       where: {
         email,

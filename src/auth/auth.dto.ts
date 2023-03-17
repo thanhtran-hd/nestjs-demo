@@ -1,7 +1,7 @@
-import { Roles } from '../core/enum';
+import { ROLES } from '../core/enum';
 
 export class PayloadDto {
   id: number;
   email: string;
-  role: Roles;
+  role: ROLES;
 }

@@ -1,7 +1,9 @@
 import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
 import { User } from '../users/users.entity';
 import { AuthService } from './auth.service';
-import { JwtAuthGuard, LocalAuthGuard } from './auth.guard';
+import { LocalAuthGuard } from '../core/guards/local-auth.guards';
+import { ROLES } from 'src/core/enum';
+import { Authorized } from 'src/core/decorators/authorized.decorators';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +15,7 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Authorized(ROLES.AUTHOR)
   @Get('profile')
   async getProfile(@Request() req): Promise<User> {
     return req.user;

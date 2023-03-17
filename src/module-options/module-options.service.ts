@@ -30,7 +30,7 @@ export class JwtConfigService implements JwtOptionsFactory {
   public createJwtOptions(): JwtModuleOptions {
     return {
       secret: this.config.get('JWT_SECRET_KEY'),
-      signOptions: { expiresIn: '120s' },
+      signOptions: { expiresIn: this.config.get('JWT_EXPIRATION', '180s') },
     };
   }
 }

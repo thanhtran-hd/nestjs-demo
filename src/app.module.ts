@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './module-options/module-options.service';
 import { LoggerMiddleware } from './core/middleware/logger.middlware';
 import { AuthModule } from './auth/auth.module';
+// import { GuardsModule } from './core/guards/guards.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     ConfigModule,
     AuthModule,
+    // GuardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
