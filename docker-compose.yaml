@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    container_name: api
+    ports:
+      - 3005:3005
+    command: npm run start:dev
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    environment:
+      - MARIADB_DATABASE=nest-test
+      - MARIADB_USER=thanh
+      - MARIADB_PASSWORD=thanh12345
+      - MARIADB_ROOT_PASSWORD=root12345
+    ports:
+      - 3307:3306
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+
